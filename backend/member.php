@@ -81,7 +81,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <h1>Members</h1>
+                <h1 class="bi bi-people-fill"> Members</h1>
             </div>
             <div class="col-md-6 d-flex justify-content-end">
                 <button type="button" class="btn btn-primary bi bi-person-add" data-bs-toggle="modal" data-bs-target="#memberModal"> Add member</button>

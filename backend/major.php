@@ -49,7 +49,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <h1>Majors</h1>
+                <h1 class="bi bi-mortarboard-fill"> Majors</h1>
             </div>
             <div class="col-md-6 d-flex justify-content-end">
                 <button type="button" class="btn btn-primary mx-2 bi bi-mortarboard" data-bs-toggle="modal" data-bs-target="#majorModal"> Add major</button>
