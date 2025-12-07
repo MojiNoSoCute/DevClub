@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require_once 'configs/connect.php';
+    require_once '../configs/connect.php';
 
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
@@ -27,7 +27,7 @@
             $_SESSION['error'] = "Member updated fail!!!";
         }
 
-        header("location: index.php");
+        header("location: member.php");
     }
 
 ?>
@@ -92,7 +92,7 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-secondary mx-1" href="index.php">Go Back</a>
+                    <a class="btn btn-secondary mx-1" href="member.php">Go Back</a>
                     <button type="submit" name="update" class="btn btn-success">Update</button>
                 </div>
             </form>

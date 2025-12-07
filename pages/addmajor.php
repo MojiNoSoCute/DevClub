@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once 'configs/connect.php';
+require_once '../configs/connect.php';
 
 if (isset($_POST['submitmajor'])) {
     $major = $_POST['major'];
@@ -16,7 +16,7 @@ if (isset($_POST['submitmajor'])) {
         $_SESSION['error'] = "Major added fail!!!";
     }
     
-    header("location: index.php");
+    header("location: major.php");
 }
 
 ?>

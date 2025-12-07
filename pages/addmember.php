@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once 'configs/connect.php';
+require_once '../configs/connect.php';
 
 if (isset($_POST['submitmember'])) {
     $firstname = $_POST['firstname'];
@@ -23,7 +23,7 @@ if (isset($_POST['submitmember'])) {
     } else {
         $_SESSION['error'] = "Member added fail!!!";
     }
-    header("location: index.php");
+    header("location: member.php");
 }
 
 ?>
