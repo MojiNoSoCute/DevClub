@@ -1,7 +1,8 @@
 <?php
 
-session_start();
 require_once '../configs/connect.php';
+require_once '../configs/requireLogin.php';
+
 
 if (isset($_POST['submitmajor'])) {
     $major = $_POST['major'];

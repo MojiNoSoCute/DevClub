@@ -2,12 +2,13 @@
 
     ob_start();
 
-    session_start();
     require_once '../configs/connect.php';
+    require_once '../configs/requireLogin.php';
+
 
     if (isset($_GET['delete'])) {
         $delete_id = $_GET['delete'];
-        $stmt = $conn->prepare("DELETE FROM mojors WHERE id = :id");
+        $stmt = $conn->prepare("DELETE FROM majors WHERE id = :id");
         $stmt->bindParam(':id', $delete_id);
 
         if ($stmt->execute()) {

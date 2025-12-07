@@ -2,8 +2,9 @@
 
     ob_start();
 
-    session_start();
     require_once '../configs/connect.php';
+    require_once '../configs/requireLogin.php';
+
 
     if (isset($_GET['delete'])) {
         $delete_id = $_GET['delete'];
@@ -40,7 +41,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="col-form-label">Email</label>
-                        <input type="text" required class="form-control" name="email">
+                        <input type="email" required class="form-control" name="email">
                     </div>
                     <div class="mb-3">
                         <label for="years" class="col-form-label">Years</label>
@@ -48,7 +49,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="major" class="col-form-label">Majors</label>
-                        <select class="form-select" required aria-label="Default select example" name="major">
+                        <select class="form-select" size="5" aria-label="Size 3 select example" name="major">
+
                             <!-- fetch data -->
                             <?php 
                                     $stmt = $conn->prepare("SELECT * FROM majors");

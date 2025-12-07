@@ -1,7 +1,8 @@
 <?php
 
-session_start();
 require_once '../configs/connect.php';
+require_once '../configs/requireLogin.php';
+
 
 if (isset($_POST['submitmember'])) {
     $firstname = $_POST['firstname'];
@@ -9,6 +10,12 @@ if (isset($_POST['submitmember'])) {
     $email = $_POST['email'];
     $years = $_POST['years'];
     $major = $_POST['major'];
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = "Invalid email format!";
+        header("Location: member.php");
+        exit();
+    }
 
     $sql = "INSERT INTO members (firstName, lastName, email, years, major) VALUES (:firstname, :lastname, :email, :years, :major)";
     $stmt = $conn->prepare($sql);

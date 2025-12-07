@@ -1,7 +1,8 @@
 <?php
 
-    session_start();
     require_once '../configs/connect.php';
+    require_once '../configs/requireLogin.php';
+
 
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
@@ -10,7 +11,12 @@
         $email = $_POST['email'];
         $years = $_POST['years'];
         $major = $_POST['major'];
-    
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error'] = "Invalid email format!";
+            header("Location: member.php");
+            exit();
+        }
 
         $sql = "UPDATE members SET firstName = :firstname, lastName = :lastname, email = :email, years = :years, major = :major WHERE id = :id";
         $stmt = $conn->prepare($sql);
@@ -44,7 +50,8 @@
 
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
-</head>
+</invoke></head>
+
 <body>
 
             <!-- fetch data -->
