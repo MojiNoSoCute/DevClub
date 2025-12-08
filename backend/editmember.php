@@ -58,15 +58,24 @@
             <?php 
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    $stmt = $conn->prepare("SELECT members.id, members.firstName, members.lastName, members.email, members.years, majors.major 
-                          FROM members 
-                          JOIN majors ON members.major = majors.id
-                          where members.id = :id");
+                    $stmt = $conn->prepare("SELECT members.id, 
+                               members.firstName, 
+                               members.lastName, 
+                               members.email, 
+                               members.years, 
+                               members.major AS major_id,
+                               majors.major 
+                        FROM members 
+                        JOIN majors ON members.major = majors.id
+                        WHERE members.id = :id");
                     $stmt->bindParam(':id', $id);
                     $stmt->execute();
                     $data = $stmt->fetch();
+
+                    
                 }
             ?>
+            
 
     <!-- index -->
     <div class="container mt-5">
@@ -99,20 +108,18 @@
                                 $majors = $stmt->fetchAll();
                     ?>
                     <select class="form-select" required size="5" aria-label="Size 3 select example" name="major">
-                        <!-- fetch data -->
                         <?php 
-                                if (!$majors) {
-                                echo "<option colspan='6' class='text-center'>No majors found.</option>";
+                            if (!$majors) {
+                                echo "<option disabled>No majors found.</option>";
                             } else {
                                 foreach ($majors as $major) {
-                        ?>
-                        
-                        <option value="<?= $major['id'] ?>"><?= $major['major'] ?></option>
-                        <?php 
-                            } 
-                        }
+                                    $selected = ($major['id'] == $data['major_id']) ? 's    elected' : '';
+                                    echo "<option value='{$major['id']}' $selected>{$major['major']}</option>";
+                                }
+                            }
                         ?>
                     </select>
+
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary mx-1" href="member.php">Go Back</a>
