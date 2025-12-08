@@ -113,7 +113,7 @@
                                 echo "<option disabled>No majors found.</option>";
                             } else {
                                 foreach ($majors as $major) {
-                                    $selected = ($major['id'] == $data['major_id']) ? 's    elected' : '';
+                                    $selected = ($major['id'] == $data['major_id']) ? 'selected' : '';
                                     echo "<option value='{$major['id']}' $selected>{$major['major']}</option>";
                                 }
                             }
