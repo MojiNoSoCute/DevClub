@@ -91,27 +91,29 @@
                     <input type="number" value="<?= $data['years'] ?>" required min="2560" class="form-control" name="years">
                 </div>
                 <div class="mb-3">
-                        <label for="major" class="col-form-label">Majors</label>
-                        <select class="form-select" size="5" aria-label="Size 3 select example" name="major">
+                    <label for="major" class="col-form-label">Majors</label>
 
-                            <!-- fetch data -->
-                            <?php 
-                                    $stmt = $conn->prepare("SELECT * FROM majors");
-                                    $stmt->execute();
-                                    $majors = $stmt->fetchAll();
-
-                                    if (!$majors) {
-                                    echo "<option colspan='6' class='text-center'>No majors found.</option>";
-                                } else {
-                                    foreach ($majors as $major) {
-                            ?>
-                            <option value="<?= $major['id'] ?>"><?= $major['major'] ?></option>
-                            <?php 
-                                } 
-                            }
-                            ?>
-                        </select>
-                    </div>
+                    <?php 
+                        $stmt = $conn->prepare("SELECT * FROM majors");
+                                $stmt->execute();
+                                $majors = $stmt->fetchAll();
+                    ?>
+                    <select class="form-select" required size="5" aria-label="Size 3 select example" name="major">
+                        <!-- fetch data -->
+                        <?php 
+                                if (!$majors) {
+                                echo "<option colspan='6' class='text-center'>No majors found.</option>";
+                            } else {
+                                foreach ($majors as $major) {
+                        ?>
+                        
+                        <option value="<?= $major['id'] ?>"><?= $major['major'] ?></option>
+                        <?php 
+                            } 
+                        }
+                        ?>
+                    </select>
+                </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary mx-1" href="member.php">Go Back</a>
                     <button type="submit" name="update" class="btn btn-success">Update</button>
