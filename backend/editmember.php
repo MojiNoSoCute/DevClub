@@ -91,13 +91,27 @@
                     <input type="number" value="<?= $data['years'] ?>" required min="2560" class="form-control" name="years">
                 </div>
                 <div class="mb-3">
-                    <label for="major" class="col-form-label">Majors</label>
-                    <select class="form-select" value="<?= $data['major'] ?>" required aria-label="Default select example" name="major">
-                        <option value="1">software engineering</option>
-                        <option value="2">computer</option>
-                        <option value="3">teacher</option>
-                    </select>
-                </div>
+                        <label for="major" class="col-form-label">Majors</label>
+                        <select class="form-select" size="5" aria-label="Size 3 select example" name="major">
+
+                            <!-- fetch data -->
+                            <?php 
+                                    $stmt = $conn->prepare("SELECT * FROM majors");
+                                    $stmt->execute();
+                                    $majors = $stmt->fetchAll();
+
+                                    if (!$majors) {
+                                    echo "<option colspan='6' class='text-center'>No majors found.</option>";
+                                } else {
+                                    foreach ($majors as $major) {
+                            ?>
+                            <option value="<?= $major['id'] ?>"><?= $major['major'] ?></option>
+                            <?php 
+                                } 
+                            }
+                            ?>
+                        </select>
+                    </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary mx-1" href="member.php">Go Back</a>
                     <button type="submit" name="update" class="btn btn-success">Update</button>
