@@ -10,7 +10,7 @@
                     <a class="nav-link" href="major.php">Majors</a>
                 </div>
                 <div class="ms-auto">
-                    <a href="phpmysql/logout.php" class="btn btn-danger bi bi-door-closed"> Logout</a>
+                    <a href="../backend/logout.php" class="btn btn-danger bi bi-door-closed"> Logout</a>
                 </div>
             </div>
         </div>

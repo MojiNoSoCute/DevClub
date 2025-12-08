@@ -107,52 +107,53 @@
             </div>
         <?php } ?>
 
-<!-- Member data -->
+        <!-- Member data -->
+        <div class="table-responsive">
     <table class="table">
-    <thead>
-        <tr>
-        <th scope="col">#</th>
-        <th scope="col">Firstname</th>
-        <th scope="col">Lastname</th>
-        <th scope="col">Email</th>
-        <th scope="col">Years</th>
-        <th scope="col">Major</th>
-        <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        <?php
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Years</th>
+                <th>Major</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <?php
             $stmt = $conn->query("SELECT members.id, members.firstName, members.lastName, members.email, members.years, majors.major 
-                            FROM members 
-                            JOIN majors ON members.major = majors.id"); 
-            $stmt->execute();
+                                  FROM members 
+                                  JOIN majors ON members.major = majors.id"); 
             $members = $stmt->fetchAll();
 
             if (!$members) {
-                echo "<tr><td colspan='6' class='text-center'>No members found.</td></tr>";
+                echo "<tr><td colspan='7' class='text-center'>No members found.</td></tr>";
             } else {
                 foreach ($members as $member) {
-
-                
-        ?>
-        <tr>
-        <th scope="row"><?= $member['id'] ?></th>
-        <td><?= $member['firstName'] ?></td>
-        <td><?= $member['lastName'] ?></td>
-        <td><?= $member['email'] ?></td>
-        <td><?= $member['years'] ?></td>
-        <td><?= $member['major'] ?></td>
-        <td>
-            <a href="editmember.php?id=<?= $member['id']; ?>" class="btn btn-warning">Edit</a>
-            <a href="?delete=<?= $member['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure???, You want to delete?')">Delte</a>
-        </td>
-        </tr>
-        <?php
+            ?>
+            <tr>
+                <td><?= $member['id'] ?></td>
+                <td><?= $member['firstName'] ?></td>
+                <td><?= $member['lastName'] ?></td>
+                <td><?= $member['email'] ?></td>
+                <td><?= $member['years'] ?></td>
+                <td><?= $member['major'] ?></td>
+                <td>
+                    <a href="editmember.php?id=<?= $member['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="?delete=<?= $member['id']; ?>" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                </td>
+            </tr>
+            <?php
                 }
             }
             ?>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
     </div>
 
 <?php

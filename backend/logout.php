@@ -3,5 +3,5 @@
 session_start();
 session_destroy();
 
-header("Location: /phpmysql/index.php");
+header("Location: /index.php");
 exit;
